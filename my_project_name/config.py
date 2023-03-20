@@ -105,6 +105,8 @@ class Config:
 
         self.command_prefix = self._get_cfg(["command_prefix"], default="!c") + " "
 
+        self.openai_key = self._get_cfg(["openai", "key"], default=0)
+
     def _get_cfg(
         self,
         path: List[str],
