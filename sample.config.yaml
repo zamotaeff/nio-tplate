@@ -47,3 +47,7 @@ logging:
   console_logging:
     # Whether logging to the console is enabled
     enabled: true
+
+# OpenAI setup
+openai:
+  key: "sk-********"
