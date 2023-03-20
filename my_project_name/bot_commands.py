@@ -2,6 +2,7 @@ from nio import AsyncClient, MatrixRoom, RoomMessageText
 
 from my_project_name.chat_functions import react_to_event, send_text_to_room
 from my_project_name.config import Config
+from my_project_name.oai import OpenAIAPI
 from my_project_name.storage import Storage
 
 
@@ -88,8 +89,11 @@ class Command:
         await send_text_to_room(self.client, self.room.room_id, text)
 
     async def _unknown_command(self):
+        openai_api = OpenAIAPI(self.config.openai_key)
+        response = openai_api.generate_response(self.command)
+
         await send_text_to_room(
             self.client,
             self.room.room_id,
-            f"Unknown command '{self.command}'. Try the 'help' command for more information.",
+            f"{response}",
         )
